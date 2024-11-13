@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Desain Web</title>
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            height: 50em;
+            background-color: #fa0064;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .card {
+            width: 350px;
+            /* Lebar card */
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+            background-color: white;
+            border-radius: 8px;
+        }
+
+        .card h2 {
+            text-align: center;
+            font-size: 19px;
+            margin-bottom: 20px;
+            color: #4d1c9b;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 12px;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: rgb(180, 174, 255);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #f7aeff;
+        }
+
+        #hasil {
+            background-color: #ff829b;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            color: #333;
+            text-align: center;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>Hitung Luas Segitiga</h2>
+        <form>
+            <label for="alas">Nilai Alas (cm)</label>
+            <input type="text" id="alas" oninput="checkInputs()">
+
+            <label for="tinggi">Nilai Tinggi (cm)</label>
+            <input type="text" id="tinggi" oninput="checkInputs()">
+
+            <div id="hasil">Hasilnya</div>
+
+            <button id="btnhitung" type="button" onclick="hitungLuas()" disabled>Hitung Luas</button>
+        </form>
+    </div>
+
+    <script>
+        function hitungLuas() {
+            let alas = Number(document.getElementById('alas').value);
+            let tinggi = Number(document.getElementById('tinggi').value);
+
+            let luas = 0.5 * alas * tinggi;
+
+            let hsl = "Hitung Luas Segitiga dengan Nilai <br>";
+            hsl += "Alas = " + alas + " cm <br>";
+            hsl += "Tinggi = " + tinggi + " cm <br>";
+            hsl += "---------------------------------- <br>";
+            hsl += "Luas = ½ x Alas x Tinggi <br>";
+            hsl += "Luas = ½ x " + alas + " x " + tinggi + "<br>";
+            hsl += "Luas = " + luas + " cm<sup>2</sup><br>";
+
+            document.getElementById("hasil").innerHTML = hsl;
+        }
+
+        // Fungsi untuk mengecek apakah input sudah terisi atau belum
+        function checkInputs() {
+            let alas = document.getElementById('alas').value;
+            let tinggi = document.getElementById('tinggi').value;
+            let button = document.getElementById('btnhitung');
+
+            // Mengaktifkan tombol jika kedua input sudah terisi
+            button.disabled = !(alas && tinggi);
+        }
+    </script>
+
+</body>
+
+</html>
